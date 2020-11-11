@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,400;1,600&display=swap");
+
+html,
+body {
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.posts {
+  display: flex;
+}
+
+.post {
+  width: "33%";
+  background-color: antiquewhite;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.created_by {
+  margin-top: 10px;
+}

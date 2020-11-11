@@ -1,0 +1,16 @@
+{% extends "blog/master.html" %}
+{% block content %}
+
+<h2>Post {{ post.title }}</h2>
+<h4>Criado por {{ post.firstName }} {{ post.lastName }}</h4>
+
+<div class="post">
+
+    <div id="content">
+        {{ post.content|nl2br }}
+    </div>
+
+</div>
+
+
+{% endblock %}
