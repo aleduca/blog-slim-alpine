@@ -29,4 +29,18 @@ class Post extends Base
             var_dump($e->getMessage());
         }
     }
+
+    public function searchPost($searched)
+    {
+        try {
+            $prepared = $this->connection->prepare("select * from {$this->table} 
+            inner join users on users.id = posts.user_id where posts.title LIKE :searchTitle OR posts.content LIKE :searchContent");
+            $prepared->bindValue(':searchTitle', "%{$searched}%");
+            $prepared->bindValue(':searchContent', "%{$searched}%");
+            $prepared->execute();
+            return $prepared->fetchAll();
+        } catch (PDOException $e) {
+            var_dump($e->getMessage());
+        }
+    }
 }

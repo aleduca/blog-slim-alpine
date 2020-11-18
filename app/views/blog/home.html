@@ -4,21 +4,35 @@
 
 <div class="posts">
 
-    {% for post in posts %}
-    <div class="post">
-        <div class="title">{{ post.title }}</div>
-        <div class="content">
-            {{post.content|truncate(100,'...') }}
-        </div>
-        <div class="created_by">
-            Criado por: {{ post.firstName }} {{ post.lastName }}
-        </div>
-        <div>
-            <a href="/post/{{ post.slug }}" class="btn btn-info btn-sm">Ver post</a>
-        </div>
-    </div>
-    {% endfor %}
+    <div x-data="search()" x-init="init()">
 
+
+        <div id="search">
+            <input type="text" class="form-control" @keydown="search" x-model="searchPost" placeholder="Buscar post">
+        </div>
+        <div x-ref="notFound"></div>
+        <template x-for="post in posts" :key="post.id">
+            <div class="post">
+                <div class="title" x-text="post.title"></div>
+                <div class="content" x-text="truncate(post.content,100)"></div>
+                <div class="created_by" x-text="`Criado por ${post.firstName} ${post.lastName}`"></div>
+                <div>
+                    <a :href="`/post/${post.slug}`" class="btn btn-info btn-sm">Ver post</a>
+                </div>
+            </div>
+        </template>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"
+        integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww=="
+        crossorigin="anonymous"></script>
+    </script>
+    <script src="./assets/blog/search.js"></script>
 </div>
 
 
